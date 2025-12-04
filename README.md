@@ -1,12 +1,12 @@
+# Win2HA
 
-# MQTT Windows Bridge
-
-A lightweight Python service that connects a Windows PC to [Home Assistant](https://www.home-assistant.io) via [MQTT](https://mqtt.org).  
+A lightweight Python service that connects a Windows PC to [Home Assistant](https://www.home-assistant.io) via [MQTT](https://mqtt.org).
 It uses MQTT Discovery to automatically create a switch entity in Home Assistant and runs predefined safe commands when toggled ON or OFF.
 
 ---
 
 ## ✨ Features
+
 - 🔗 Native **Home Assistant MQTT Discovery**
 - ⚙️ **Predefined, safe command mapping** (no arbitrary execution)
 - 🪶 **Lightweight** – single Python script using `paho-mqtt`
@@ -15,6 +15,7 @@ It uses MQTT Discovery to automatically create a switch entity in Home Assis
 ---
 
 ## 🧩 Requirements
+
 - Windows 10 or 11
 - Python 3.9+ (with `pip`)
 - MQTT broker accessible from the host (e.g. Mosquitto)
@@ -25,18 +26,19 @@ It uses MQTT Discovery to automatically create a switch entity in Home Assis
 ## ⚙️ Installation
 
 1. **Clone or download this repository**
+
    ```bash
    git clone https://github.com/<youruser>/mqtt-windows-bridge.git
    cd mqtt-windows-bridge
    ```
-
 2. **Install dependencies**
+
    ```bash
    pip install paho-mqtt
    ```
-
 3. **Edit configuration**
    Open `mqtt_windows_bridge.py` in a text editor and set:
+
    ```python
    BROKER = "your.mqtt.broker"
    USERNAME = "mqtt_user"
@@ -44,11 +46,12 @@ It uses MQTT Discovery to automatically create a switch entity in Home Assis
    COMMAND_ON  = ["C:\\Path\\to\\wsds.exe", "tv.on"]
    COMMAND_OFF = ["C:\\Path\\to\\wsds.exe", "tv.dis"]
    ```
-
 4. **Test manually**
+
    ```bash
    python mqtt_windows_bridge.py
    ```
+
    You should see a switch appear in Home Assistant under MQTT entities.
 
 ---
@@ -65,15 +68,15 @@ It uses MQTT Discovery to automatically create a switch entity in Home Assis
 3. **Triggers tab**
    - New → *At startup* (or *At log on*)
 4. **Actions tab**
-   - Start a program:  
+   - Start a program:
      ```
      C:\Path\To\Python\pythonw.exe
      ```
-   - *Add arguments*:  
+   - *Add arguments*:
      ```
      "C:\Path\To\mqtt_windows_bridge.py"
      ```
-   - *Start in*:  
+   - *Start in*:
      ```
      C:\Path\To\
      ```
@@ -95,6 +98,7 @@ It uses MQTT Discovery to automatically create a switch entity in Home Assis
 ## 🪶 Logging (optional)
 
 Add this snippet near the top of your script to record output:
+
 ```python
 import sys, os
 sys.stdout = open(os.path.join(os.path.dirname(__file__), "mqtt_windows_bridge.log"), "a", buffering=1)
@@ -104,6 +108,5 @@ sys.stderr = sys.stdout
 ---
 
 ## 📜 License
+
 This project is released under the [MIT License](LICENSE).
-
-
